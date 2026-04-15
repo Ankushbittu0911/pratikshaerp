@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseURL = import.meta.env.VITE_API_BASE_URL || (window.location.hostname.includes('vercel.app') ? 'https://pratikshaerp-backend.onrender.com' : '/api')
+const rawBaseURL = import.meta.env.VITE_API_BASE_URL || (window.location.hostname.includes('vercel.app') ? 'https://pratikshaerp-backend.onrender.com' : '/api')
+const baseURL = rawBaseURL.endsWith('/api') ? rawBaseURL : rawBaseURL.replace(/\/+$/, '') + '/api'
 
 console.log('API baseURL=', baseURL)
 
