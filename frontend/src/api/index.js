@@ -2,6 +2,8 @@ import axios from 'axios'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL || (window.location.hostname.includes('vercel.app') ? 'https://pratikshaerp-backend.onrender.com' : '/api')
 
+console.log('API baseURL=', baseURL)
+
 const api = axios.create({
   baseURL,
   timeout: 30000,
