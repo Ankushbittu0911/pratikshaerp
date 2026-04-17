@@ -12,7 +12,13 @@ const app = express();
 connectDB();
 
 // Middleware
-const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173').split(',').map((url) => url.trim());
+const defaultOrigins = [
+  'http://localhost:5173',
+  'https://erp.pratikshatechnologies.com',
+  'https://pratikshaerp.vercel.app',
+];
+const envOrigins = process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',').map((url) => url.trim()) : [];
+const allowedOrigins = [...new Set([...defaultOrigins, ...envOrigins])];
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
